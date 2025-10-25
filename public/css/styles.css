@@ -1,0 +1,436 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Centrado para index */
+.index-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.index-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Centrado para pacientes */
+.pacientes-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pacientes-content h1 {
+  text-align: center;
+}
+
+/* Centrado para asignar turno */
+.asignar-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.asignar-content h1 {
+  text-align: center;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Asegurar que todos los botones tengan el mismo estilo */
+button[type="button"]:not(.theme-toggle),
+#btnAsignarTurno {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button[type="button"]:not(.theme-toggle):hover,
+#btnAsignarTurno:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  max-width: 1000px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  background: none;
+  border: none;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #f4f4f4;
+}
+
+.dark-mode th {
+  background-color: #333;
+  color: #f4f4f4;
+}
+
+.dark-mode th, .dark-mode td {
+  border: 1px solid #555;
+}
+
+.dark-mode .btn {
+  background-color: #0d6efd;
+}
+
+.dark-mode .btn:hover {
+  background-color: #0b5ed7;
+}
+
+.dark-mode button[type="button"]:not(.theme-toggle),
+.dark-mode #btnAsignarTurno {
+  background-color: #0d6efd;
+}
+
+.dark-mode button[type="button"]:not(.theme-toggle):hover,
+.dark-mode #btnAsignarTurno:hover {
+  background-color: #0b5ed7;
+}
+
+/* Centrar contenido de turno-box */
+.turno-box {
+  margin: 20px auto !important;
+  max-width: 450px !important;
+  text-align: left !important;
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 1px solid #dee2e6;
+}
+
+/* Formulario de turno */
+.turno-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fecha-grupo,
+.hora-grupo,
+.boton-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fecha-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.hora-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 5px;
+}
+
+.fecha-input,
+.hora-select {
+  padding: 12px 15px;
+  border: 2px solid #ced4da;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+}
+
+.fecha-input:focus,
+.hora-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+.boton-grupo {
+  margin-top: 10px;
+  align-items: center;
+}
+
+.btn-asignar {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+/* Tema oscuro para formulario */
+.dark-mode .turno-box {
+  background: #343a40;
+  border-color: #495057;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.dark-mode .fecha-label {
+  color: #f8f9fa;
+}
+
+.dark-mode .hora-label {
+  color: #ced4da;
+}
+
+.dark-mode .fecha-input,
+.dark-mode .hora-select {
+  background: #495057;
+  border-color: #6c757d;
+  color: #f8f9fa;
+}
+
+.dark-mode .fecha-input:focus,
+.dark-mode .hora-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13,110,253,0.25);
+}
+
+.search-box {
+  margin: 0 auto !important;
+}
+
+.btn-asignar:disabled {
+  background-color: #6c757d !important;
+  cursor: not-allowed !important;
+}
+
+.btn:disabled,
+button:disabled {
+  background-color: #6c757d !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+.dark-mode .btn:disabled,
+.dark-mode button:disabled {
+  background-color: #495057 !important;
+}
+
+/* Estilos para modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.dark-mode .modal-content {
+  background: #333;
+  color: #f4f4f4;
+}
+
+/* Estilos para turnos con botones de eliminar */
+.turnos-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.turno-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.turno-item:last-child {
+  border-bottom: none;
+}
+
+.turno-text {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.btn-eliminar {
+  background: #dc3545 !important;
+  color: white !important;
+  border: none;
+  border-radius: 4px;
+  padding: 0;
+  cursor: pointer;
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Crear X con CSS puro para centrado perfecto */
+.btn-eliminar::before,
+.btn-eliminar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  background-color: white;
+  border-radius: 1px;
+  transform-origin: center;
+}
+
+.btn-eliminar::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.btn-eliminar::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.btn-eliminar:hover {
+  background: #c82333 !important;
+  transform: scale(1.1);
+}
+
+.btn-eliminar:hover::before,
+.btn-eliminar:hover::after {
+  background-color: white;
+}
+
+.dark-mode .btn-eliminar {
+  background: #dc3545 !important;
+}
+
+.dark-mode .btn-eliminar::before,
+.dark-mode .btn-eliminar::after {
+  background-color: white;
+}
+
+.dark-mode .btn-eliminar:hover {
+  background: #c82333 !important;
+}
+
+.dark-mode .turno-item {
+  border-bottom-color: #555;
+}
+
+/* Estilos para información del turno en modal */
+.turno-info {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #007bff;
+}
+
+.turno-fecha {
+  font-size: 16px;
+  font-weight: bold;
+  color: #495057;
+  margin-bottom: 5px;
+}
+
+.turno-hora {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.dark-mode .turno-info {
+  background: #495057;
+  border-left-color: #0d6efd;
+}
+
+.dark-mode .turno-fecha {
+  color: #f8f9fa;
+}
+
+.dark-mode .turno-hora {
+  color: #ced4da;
+}
+
+/* Botones del modal */
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-cancelar {
+  background-color: #6c757d !important;
+}
+
+.btn-cancelar:hover {
+  background-color: #545b62 !important;
+}
+
+.btn-confirmar {
+  background-color: #dc3545 !important;
+}
+
+.btn-confirmar:hover {
+  background-color: #c82333 !important;
+}

@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title= titulo
+    link(rel="stylesheet" href="/css/styles.css")
+  body
+    button.theme-toggle(id="themeBtn") 🌙
+    
+    .index-content
+      h1 Clínica - Sistema de Pacientes
+      p Bienvenido al sistema de gestión de pacientes.
+
+      .index-buttons
+        a.btn(href="/pacientes") Ver Pacientes
+        a.btn(href="/asignar-turno") Asignar Turno
+
+    script(src="/js/theme.js")
