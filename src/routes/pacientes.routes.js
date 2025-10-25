@@ -8,15 +8,19 @@ import {
   vistaAsignarTurno,
   asignarTurno
 } from "../controllers/pacientes.controller.js";
+import { authMiddleware, rolMiddleware } from "../middlewares/auth.js";
 
 const router = Router();
 
-router.get("/", obtenerPacientes);
-router.get("/:id", obtenerPaciente);
-router.post("/", crearPaciente);
-router.put("/:id", actualizarPaciente);
-router.delete("/:id", eliminarPaciente);
+// crud pacientes con roles
+router.get("/", authMiddleware, rolMiddleware(["admin", "recepcionista"]), obtenerPacientes);
+router.get("/:id", authMiddleware, rolMiddleware(["admin", "recepcionista"]), obtenerPaciente);
+router.post("/", authMiddleware, rolMiddleware(["admin", "recepcionista"]), crearPaciente);
+router.put("/:id", authMiddleware, rolMiddleware(["admin", "recepcionista"]), actualizarPaciente);
+router.delete("/:id", authMiddleware, rolMiddleware(["admin"]), eliminarPaciente);
 
-// NOTA: dejamos asignar-turno montado en app.js como ruta global (/asignar-turno)
-// Si preferís montarlo aquí como /pacientes/asignar-turno lo cambiás.
+// Subruta de asignar turno
+router.get("/asignar-turno", authMiddleware, rolMiddleware(["admin", "recepcionista"]), vistaAsignarTurno);
+router.post("/asignar-turno", authMiddleware, rolMiddleware(["admin", "recepcionista"]), asignarTurno);
+
 export default router;

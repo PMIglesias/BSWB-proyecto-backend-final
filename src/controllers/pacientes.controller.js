@@ -3,9 +3,9 @@ import Turno from "../models/Turno.js";
 
 export const obtenerPacientes = async (req, res) => {
   try {
-    // Obtener todos los pacientes y sus turnos
+    // get todos los pacientes y sus turnos
     const pacientes = await Paciente.find().lean();
-    // Para cada paciente, buscar sus turnos
+    // para cada paciente, buscar sus turnos
     const pacientesConTurnos = await Promise.all(pacientes.map(async p => {
       const turnos = await Turno.find({ paciente: p._id }).lean();
       // transformar turnos a strings para compatibilidad con vistas
@@ -68,7 +68,7 @@ export const actualizarPaciente = async (req, res) => {
 export const eliminarPaciente = async (req, res) => {
   try {
     const { id } = req.params;
-    // Eliminar turnos asociados primero (opcional)
+    // delet turnos asociados primero 
     await Turno.deleteMany({ paciente: id });
     const eliminado = await Paciente.findByIdAndDelete(id);
     if (!eliminado) return res.status(404).json({ error: "Paciente no encontrado" });
@@ -79,7 +79,7 @@ export const eliminarPaciente = async (req, res) => {
   }
 };
 
-// Vista para asignar turno (render)
+// vitsa para asignar turno (render)
 export const vistaAsignarTurno = async (req, res) => {
   try {
     const pacientes = await Paciente.find().lean();
@@ -96,7 +96,7 @@ export const vistaAsignarTurno = async (req, res) => {
 export const asignarTurno = async (req, res) => {
   try {
     const { pacienteId, fecha } = req.body;
-    // pacienteId puede venir como string o number; usamos mongoose
+    // pacienteId puede venir como string o number
     const paciente = await Paciente.findById(pacienteId);
     if (!paciente) return res.status(404).json({ error: "Paciente no encontrado" });
 
@@ -106,7 +106,7 @@ export const asignarTurno = async (req, res) => {
     });
     await nuevoTurno.save();
 
-    // si es petición desde formulario HTML redirigir
+    // si es req desde formulario HTML redirigir
     if (req.headers.accept && req.headers.accept.includes("text/html")) {
       return res.redirect("/pacientes");
     }

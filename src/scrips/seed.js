@@ -7,17 +7,17 @@ import mongoose from "mongoose";
 import Paciente from "../src/models/Paciente.js";
 import Turno from "../src/models/Turno.js";
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/clinica";
+const MONGO_URI = process.env.MONGO_URI ;
 
 const run = async () => {
   try {
     await mongoose.connect(MONGO_URI);
-    console.log("Conectado para seed");
+    console.log("conecta2 para seed");
 
     const file = await fs.readFile(path.join(process.cwd(), "data", "pacientes.json"), "utf-8");
     const pacientes = JSON.parse(file);
 
-    // Vaciar colecciones (opcional)
+    // vaciar colecciones 
     await Turno.deleteMany({});
     await Paciente.deleteMany({});
 

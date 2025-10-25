@@ -4,9 +4,9 @@ import Paciente from "../models/Paciente.js";
 export const listarTurnos = async (req, res) => {
   try {
     const turnos = await Turno.find().populate("paciente", "nombre edad diagnostico").lean();
-    // si piden html, podemos renderizar (no obligatorio)
+    // si piden html, podemos renderizar 
     if (req.headers.accept && req.headers.accept.includes("text/html")) {
-      // crear una vista si querés; por ahora devolvemos JSON
+      
       return res.render("turnos", { turnos });
     }
     return res.json(turnos);
