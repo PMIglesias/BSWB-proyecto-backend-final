@@ -1,5 +1,10 @@
 import Usuario from "../models/Usuario.js";
 
+//mostrar login
+export const loginView = (req, res) => {
+  res.render("login", { titulo: "Iniciar Sesión" });
+};
+
 // login con cookie de sesión
 export const loginUsuario = async (req, res) => {
   try {
@@ -15,7 +20,10 @@ export const loginUsuario = async (req, res) => {
     req.session.userId = usuario._id;
     req.session.rol = usuario.rol;
 
-    res.json({ mensaje: "Login exitoso", usuario: { id: usuario._id, nombre: usuario.nombre, rol: usuario.rol } });
+    // res.json({ mensaje: "Login exitoso", usuario: { id: usuario._id, nombre: usuario.nombre, rol: usuario.rol } });
+    
+    // redirigir al index para pug
+    res.redirect("/");
   } catch (error) {
     res.status(500).json({ mensaje: error.message });
   }

@@ -30,9 +30,17 @@ app.use(
   })
 );
 
-// Logger
+// Logger simple
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
+  next();
+});
+
+// Middleware para que todas las vistas tengan info de usuario
+app.use((req, res, next) => {
+  res.locals.usuario = req.session.userId
+    ? { id: req.session.userId, rol: req.session.rol, nombre: req.session.nombre || "Usuario" }
+    : null;
   next();
 });
 
@@ -46,5 +54,5 @@ app.use((req, res) => {
   return res.json({ error: "Not found" });
 });
 
-// Iniciar servidor
+// iniciar servidor
 app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));

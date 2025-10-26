@@ -1,90 +1,103 @@
+/* ======== Base ======== */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
-  transition: background 0.3s, color 0.3s;
+  background: #fafafa;
+  color: #222;
 }
 
-/* Centrado para index */
-.index-content {
+h1, h2, h3 {
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  padding-top: 50px;
 }
-
-.index-buttons {
+/* ===== Header / Navbar ===== */
+.navbar {
   display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-/* Centrado para pacientes */
-.pacientes-content {
-  max-width: 1000px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 15px 20px;
+  background: #007bff;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.pacientes-content h1 {
-  text-align: center;
-}
-
-/* Centrado para asignar turno */
-.asignar-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.asignar-content h1 {
-  text-align: center;
-}
-
-nav {
-  margin-bottom: 20px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
+.nav-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
   text-decoration: none;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
   border-radius: 6px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nav-link:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  color: #555;
   font-size: 14px;
 }
 
-.btn:hover {
-  background-color: #0056b3;
+/* ===== Contenedor principal ===== */
+.container {
+  max-width: 900px;
+  margin: 50px auto 50px;
+  padding: 20px;
 }
 
-/* Asegurar que todos los botones tengan el mismo estilo */
-button[type="button"]:not(.theme-toggle),
-#btnAsignarTurno {
+
+/* ======== Botones ======== */
+.btn, button {
   display: inline-block;
-  padding: 8px 16px;
+  padding: 10px 18px;
   background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
+  color: #fff;
   border: none;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
   font-size: 14px;
 }
 
-button[type="button"]:not(.theme-toggle):hover,
-#btnAsignarTurno:hover {
+.btn:hover, button:hover {
   background-color: #0056b3;
 }
 
+.btn:disabled, button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-danger { background-color: #dc3545; }
+.btn-danger:hover { background-color: #b02a37; }
+
+.btn-secondary { background-color: #6c757d; }
+.btn-secondary:hover { background-color: #545b62; }
+
+/* ======== Tablas ======== */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px auto;
-  max-width: 1000px;
+  margin-top: 20px;
+  font-size: 14px;
 }
 
 th, td {
@@ -97,208 +110,56 @@ th {
   background-color: #f4f4f4;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 20px;
-  background: none;
-  border: none;
+/* ======== Formularios ======== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.dark-mode {
-  background-color: #121212;
-  color: #f4f4f4;
+label {
+  font-weight: 600;
 }
 
-.dark-mode th {
-  background-color: #333;
-  color: #f4f4f4;
+input, select, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
-.dark-mode th, .dark-mode td {
-  border: 1px solid #555;
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
-.dark-mode .btn {
-  background-color: #0d6efd;
-}
-
-.dark-mode .btn:hover {
-  background-color: #0b5ed7;
-}
-
-.dark-mode button[type="button"]:not(.theme-toggle),
-.dark-mode #btnAsignarTurno {
-  background-color: #0d6efd;
-}
-
-.dark-mode button[type="button"]:not(.theme-toggle):hover,
-.dark-mode #btnAsignarTurno:hover {
-  background-color: #0b5ed7;
-}
-
-/* Centrar contenido de turno-box */
+/* ======== Turnos ======== */
 .turno-box {
-  margin: 20px auto !important;
-  max-width: 450px !important;
-  text-align: left !important;
-  background: #f8f9fa;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border: 1px solid #dee2e6;
+  max-width: 450px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
-/* Formulario de turno */
 .turno-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
-.fecha-grupo,
-.hora-grupo,
-.boton-grupo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.fecha-label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 5px;
-}
-
-.hora-label {
-  font-size: 16px;
-  font-weight: 600;
-  color: #495057;
-  margin-bottom: 5px;
-}
-
-.fecha-input,
-.hora-select {
-  padding: 12px 15px;
-  border: 2px solid #ced4da;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  background: white;
-}
-
-.fecha-input:focus,
-.hora-select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
-}
-
-.boton-grupo {
-  margin-top: 10px;
-  align-items: center;
-}
-
-.btn-asignar {
-  padding: 15px 30px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
-  min-width: 200px;
-}
-
-/* Tema oscuro para formulario */
-.dark-mode .turno-box {
-  background: #343a40;
-  border-color: #495057;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-
-.dark-mode .fecha-label {
-  color: #f8f9fa;
-}
-
-.dark-mode .hora-label {
-  color: #ced4da;
-}
-
-.dark-mode .fecha-input,
-.dark-mode .hora-select {
-  background: #495057;
-  border-color: #6c757d;
-  color: #f8f9fa;
-}
-
-.dark-mode .fecha-input:focus,
-.dark-mode .hora-select:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 3px rgba(13,110,253,0.25);
-}
-
-.search-box {
-  margin: 0 auto !important;
-}
-
-.btn-asignar:disabled {
-  background-color: #6c757d !important;
-  cursor: not-allowed !important;
-}
-
-.btn:disabled,
-button:disabled {
-  background-color: #6c757d !important;
-  cursor: not-allowed !important;
-  opacity: 0.6;
-}
-
-.dark-mode .btn:disabled,
-.dark-mode button:disabled {
-  background-color: #495057 !important;
-}
-
-/* Estilos para modal */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.dark-mode .modal-content {
-  background: #333;
-  color: #f4f4f4;
-}
-
-/* Estilos para turnos con botones de eliminar */
 .turnos-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0;
 }
 
 .turno-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 4px 0;
+  align-items: center;
+  padding: 6px 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -306,112 +167,45 @@ button:disabled {
   border-bottom: none;
 }
 
-.turno-text {
-  flex: 1;
-  margin-right: 8px;
-}
-
+/* ======== Botón eliminar ======== */
 .btn-eliminar {
-  background: #dc3545 !important;
-  color: white !important;
+  background: #dc3545;
+  color: white;
   border: none;
   border-radius: 4px;
-  padding: 0;
-  cursor: pointer;
-  min-width: 24px;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
-  transition: all 0.2s ease;
-}
-
-/* Crear X con CSS puro para centrado perfecto */
-.btn-eliminar::before,
-.btn-eliminar::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 12px;
-  height: 2px;
-  background-color: white;
-  border-radius: 1px;
-  transform-origin: center;
-}
-
-.btn-eliminar::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.btn-eliminar::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .btn-eliminar:hover {
-  background: #c82333 !important;
-  transform: scale(1.1);
+  background: #b02a37;
 }
 
-.btn-eliminar:hover::before,
-.btn-eliminar:hover::after {
-  background-color: white;
+/* ======== Modal ======== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
-.dark-mode .btn-eliminar {
-  background: #dc3545 !important;
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  margin: auto;
 }
 
-.dark-mode .btn-eliminar::before,
-.dark-mode .btn-eliminar::after {
-  background-color: white;
-}
-
-.dark-mode .btn-eliminar:hover {
-  background: #c82333 !important;
-}
-
-.dark-mode .turno-item {
-  border-bottom-color: #555;
-}
-
-/* Estilos para información del turno en modal */
-.turno-info {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 15px 0;
-  border-left: 4px solid #007bff;
-}
-
-.turno-fecha {
-  font-size: 16px;
-  font-weight: bold;
-  color: #495057;
-  margin-bottom: 5px;
-}
-
-.turno-hora {
-  font-size: 14px;
-  color: #6c757d;
-}
-
-.dark-mode .turno-info {
-  background: #495057;
-  border-left-color: #0d6efd;
-}
-
-.dark-mode .turno-fecha {
-  color: #f8f9fa;
-}
-
-.dark-mode .turno-hora {
-  color: #ced4da;
-}
-
-/* Botones del modal */
 .modal-buttons {
   display: flex;
   gap: 10px;
@@ -419,18 +213,121 @@ button:disabled {
   margin-top: 20px;
 }
 
-.btn-cancelar {
-  background-color: #6c757d !important;
+/* ======== Login  ======== */
+.login-container {
+  max-width: 380px;
+  margin: 100px auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn-cancelar:hover {
-  background-color: #545b62 !important;
+.login-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
-.btn-confirmar {
-  background-color: #dc3545 !important;
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #222;
 }
 
-.btn-confirmar:hover {
-  background-color: #c82333 !important;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-group input {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.2);
+  outline: none;
+}
+
+button.btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #0066ff, #007bff);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button.btn:hover {
+  background: linear-gradient(90deg, #0052cc, #0056b3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.alert {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/*    index*/ 
+
+.index-content {
+  max-width: 900px;
+  margin: 100px auto 50px;
+  text-align: center;
+  padding: 20px;
+}
+
+.index-content h1 {
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #222;
+  font-weight: 700;
+}
+
+.index-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+a.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, #0066ff, #007bff);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+a.btn:hover {
+  background: linear-gradient(90deg, #0052cc, #0056b3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
