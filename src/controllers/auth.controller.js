@@ -5,7 +5,7 @@ export const loginView = (req, res) => {
   res.render("login", { titulo: "Iniciar Sesión" });
 };
 
-// login con cookie de sesión
+// login con cookie 
 export const loginUsuario = async (req, res) => {
   try {
     const { email, password } = req.body;

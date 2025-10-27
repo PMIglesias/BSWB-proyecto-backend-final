@@ -1,51 +1,110 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("modalEliminarTurno");
-  const fechaTurno = document.getElementById("fechaTurno");
-  const horaTurno = document.getElementById("horaTurno");
-  const btnCancelar = document.getElementById("btnCancelar");
-  const btnConfirmarEliminar = document.getElementById("btnConfirmarEliminar");
-  
-  let pacienteIdAEliminar = null;
-  let turnoIndexAEliminar = null;
 
-  // Agregar event listeners a todos los botones de eliminar
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("btn-eliminar")) {
-      pacienteIdAEliminar = e.target.dataset.pacienteId;
-      turnoIndexAEliminar = e.target.dataset.turnoIndex;
-      const fechaHoraTurno = e.target.dataset.turnoFecha;
-      
-      // Separar fecha y hora
-      const [fecha, hora] = fechaHoraTurno.split(' ');
-      fechaTurno.textContent = `Fecha: ${fecha}`;
-      horaTurno.textContent = `Hora: ${hora}`;
-      
-      modal.style.display = "flex";
+  const formPaciente = document.getElementById("formPaciente");
+  const pacienteIdInput = document.getElementById("pacienteId");
+  const nombreInput = document.getElementById("nombre");
+  const edadInput = document.getElementById("edad");
+  const diagnosticoInput = document.getElementById("diagnostico");
+  const submitBtn = formPaciente.querySelector("button[type='submit']");
+
+  formPaciente.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const pacienteId = pacienteIdInput.value;
+    const data = {
+      nombre: nombreInput.value,
+      edad: edadInput.value,
+      diagnostico: diagnosticoInput.value
+    };
+
+    try {
+      let response;
+      if (pacienteId) {
+        // editar paciente
+        response = await fetch(`/pacientes/${pacienteId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+      } else {
+        // crear paciente
+        response = await fetch("/pacientes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+      }
+
+      if (!response.ok) {
+        const error = await response.json();
+        alert("Error: " + (error.mensaje || error.error));
+        return;
+      }
+
+      // reolad
+      location.reload();
+    } catch (error) {
+      alert("Error de conexión: " + error.message);
     }
   });
 
-  // Cancelar eliminación
-  btnCancelar.addEventListener("click", () => {
-    modal.style.display = "none";
-    pacienteIdAEliminar = null;
-    turnoIndexAEliminar = null;
+  // edit
+  document.querySelectorAll(".btn-editar-paciente").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const tr = btn.closest("tr");
+      const pacienteId = tr.dataset.id;
+      const nombre = btn.dataset.nombre;
+      const edad = btn.dataset.edad;
+      const diagnostico = btn.dataset.diagnostico;
+
+      // form
+      pacienteIdInput.value = pacienteId;
+      nombreInput.value = nombre;
+      edadInput.value = edad;
+      diagnosticoInput.value = diagnostico;
+
+      submitBtn.textContent = "Actualizar Paciente";
+      nombreInput.focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   });
 
-  // Confirmar eliminación
-  btnConfirmarEliminar.addEventListener("click", async () => {
-    if (pacienteIdAEliminar && turnoIndexAEliminar !== null) {
-      try {
-        const response = await fetch(`/pacientes/${pacienteIdAEliminar}/turno/${turnoIndexAEliminar}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        });
+  // modal del turno
+  const modalTurno = document.getElementById("modalEliminarTurno");
+  const fechaTurno = document.getElementById("fechaTurno");
+  const horaTurno = document.getElementById("horaTurno");
+  const btnCancelarTurno = document.getElementById("btnCancelar");
+  const btnConfirmarEliminarTurno = document.getElementById("btnConfirmarEliminar");
 
-        if (response.ok) {
-          // Recargar la página para mostrar los cambios
-          location.reload();
-        } else {
+  let pacienteIdTurno = null;
+  let turnoIndex = null;
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-eliminar")) {
+      pacienteIdTurno = e.target.dataset.pacienteId;
+      turnoIndex = e.target.dataset.turnoIndex;
+      const fechaHoraTurnoVal = e.target.dataset.turnoFecha;
+      const [fecha, hora] = fechaHoraTurnoVal.split(" ");
+
+      fechaTurno.textContent = `Fecha: ${fecha}`;
+      horaTurno.textContent = `Hora: ${hora}`;
+
+      modalTurno.style.display = "flex";
+    }
+  });
+
+  btnCancelarTurno.addEventListener("click", () => {
+    modalTurno.style.display = "none";
+    pacienteIdTurno = null;
+    turnoIndex = null;
+  });
+
+  btnConfirmarEliminarTurno.addEventListener("click", async () => {
+    if (pacienteIdTurno && turnoIndex !== null) {
+      try {
+        const response = await fetch(`/pacientes/${pacienteIdTurno}/turno/${turnoIndex}`, { method: "DELETE" });
+        if (response.ok) location.reload();
+        else {
           const error = await response.json();
           alert("Error al eliminar el turno: " + error.error);
         }
@@ -53,18 +112,60 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Error de conexión: " + error.message);
       }
     }
-    
-    modal.style.display = "none";
-    pacienteIdAEliminar = null;
-    turnoIndexAEliminar = null;
+    modalTurno.style.display = "none";
+    pacienteIdTurno = null;
+    turnoIndex = null;
   });
 
-  // Cerrar modal al hacer clic fuera del contenido
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-      pacienteIdAEliminar = null;
-      turnoIndexAEliminar = null;
+  modalTurno.addEventListener("click", (e) => {
+    if (e.target === modalTurno) {
+      modalTurno.style.display = "none";
+      pacienteIdTurno = null;
+      turnoIndex = null;
+    }
+  });
+
+  // modla pac
+  const modalPaciente = document.getElementById("modalEliminarPaciente");
+  const btnCancelarPaciente = document.getElementById("btnCancelarPaciente");
+  const btnConfirmarEliminarPaciente = document.getElementById("btnConfirmarEliminarPaciente");
+
+  let pacienteIdEliminar = null;
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-eliminar-paciente")) {
+      pacienteIdEliminar = e.target.dataset.pacienteId;
+      modalPaciente.style.display = "flex";
+    }
+  });
+
+  btnCancelarPaciente.addEventListener("click", () => {
+    modalPaciente.style.display = "none";
+    pacienteIdEliminar = null;
+  });
+
+  btnConfirmarEliminarPaciente.addEventListener("click", async () => {
+    if (!pacienteIdEliminar) return;
+
+    try {
+      const response = await fetch(`/pacientes/${pacienteIdEliminar}`, { method: "DELETE" });
+      if (response.ok) location.reload();
+      else {
+        const error = await response.json();
+        alert("Error al eliminar paciente: " + error.error);
+      }
+    } catch (error) {
+      alert("Error de conexión: " + error.message);
+    }
+
+    modalPaciente.style.display = "none";
+    pacienteIdEliminar = null;
+  });
+
+  modalPaciente.addEventListener("click", (e) => {
+    if (e.target === modalPaciente) {
+      modalPaciente.style.display = "none";
+      pacienteIdEliminar = null;
     }
   });
 });

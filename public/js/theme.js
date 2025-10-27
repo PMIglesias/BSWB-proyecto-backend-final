@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeBtn = document.getElementById("themeBtn");
   const body = document.body;
 
-  if (!themeBtn) return; // Si no hay botón, no hacemos nada
-  // Determinar preferencia (localStorage > prefers-color-scheme)
+  if (!themeBtn) return; 
+
   const stored = localStorage.getItem("theme");
   if (stored === "dark") {
     body.classList.add("dark-mode");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     body.classList.add("dark-mode");
   }
 
-  // Icono inicial
+  // icon inicial
   themeBtn.textContent = body.classList.contains("dark-mode") ? "☀️" : "🌙";
 
   themeBtn.addEventListener("click", () => {

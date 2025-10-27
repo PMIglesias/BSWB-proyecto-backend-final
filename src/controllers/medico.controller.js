@@ -3,10 +3,27 @@ import Medico from "../models/Medico.js";
 // listar
 export const obtenerMedicos = async (req, res) => {
   try {
-    const medicos = await Medico.find();
-    res.json(medicos);
+    const medicos = await Medico.find().lean();
+
+    if (req.headers.accept && req.headers.accept.includes("text/html")) {
+      return res.render("medicos", {
+        titulo: "Médicos",
+        medicos,
+        usuario: res.locals.usuario
+      });
+    }
+
+    return res.json(medicos);
+
   } catch (error) {
-    res.status(500).json({ mensaje: error.message });
+    console.error(error);
+    if (req.headers.accept && req.headers.accept.includes("text/html")) {
+      return res.status(500).render("error", {
+        message: "Error al cargar los médicos",
+        usuario: res.locals.usuario
+      });
+    }
+    return res.status(500).json({ mensaje: error.message });
   }
 };
 
