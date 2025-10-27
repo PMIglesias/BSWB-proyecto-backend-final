@@ -2,11 +2,12 @@
 
 ## Introducción
 Este proyecto fue desarrollado como parte del **segundo parcial de la materia Desarrollo Web Backend** de la carrera de Programación.  
+
 Tiene como objetivo ampliar el sistema creado en la primera entrega, incorporando una base de datos **MongoDB** y mejorando la arquitectura **MVC** con **Node.js** y **Express**.
 
 La aplicación permite gestionar pacientes y turnos médicos de una clínica, ofreciendo operaciones CRUD completas, vistas dinámicas con **Pug**, y un diseño con **modo oscuro/claro**.
 
----
+
 
 ## Objetivos
 
@@ -17,9 +18,9 @@ La aplicación permite gestionar pacientes y turnos médicos de una clínica, of
 - Mejorar la interfaz visual con CSS y Pug.  
 - Documentar el proceso de desarrollo y uso de herramientas de apoyo como IA de forma reflexiva.
 
----
 
-## ⚙️ Tecnologías Principales
+
+## Tecnologías Principales
 
 | Tecnología | Uso |
 |-------------|-----|
@@ -36,36 +37,57 @@ La aplicación permite gestionar pacientes y turnos médicos de una clínica, of
 
 ## Estructura del Proyecto
 
-```
-📂 src/
-┣ 📂 config/
-┃ ┗ db.js
-┣ 📂 controllers/
-┃ ┣ pacientes.controller.js
-┃ ┗ turnos.controller.js
-┣ 📂 middlewares/
-┃ ┣ logger.js
-┃ ┗ validarPaciente.js
-┣ 📂 models/
-┃ ┣ Paciente.js
-┃ ┗ Turno.js
-┣ 📂 routes/
-┃ ┣ pacientes.routes.js
-┃ ┗ turnos.routes.js
-┣ 📂 views/
-┃ ┣ index.pug
-┃ ┣ pacientes.pug
-┃ ┣ asignarTurno.pug
-┃ ┗ error.pug
-┗ app.js
+Listado actual de archivos y carpetas:
 
-📂 public/
-┣ 📂 css/
-┃ ┗ styles.css
-┣ 📂 js/
-┃ ┣ theme.js
-┃ ┗ asignarTurno.js
-┗ 📂 img/
+```
+├─ data
+│  └─ pacientes.json
+├─ public
+│  ├─ css
+│  │  └─ styles.css
+│  └─ js
+│     ├─ asignarTurno.js
+│     ├─ pacientes.js
+│     └─ theme.js
+└─ src
+  ├─ app.js
+  ├─ config
+  │  └─ db.js
+  ├─ controllers
+  │  ├─ auth.controller.js
+  │  ├─ medico.controller.js
+  │  ├─ pacientes.controller.js
+  │  ├─ turnos.controller.js
+  │  └─ usuario.controller.js
+  ├─ middlewares
+  │  ├─ auth.js
+  │  ├─ logger.js
+  │  └─ validarPaciente.js
+  ├─ models
+  │  ├─ Medico.js
+  │  ├─ Paciente.js
+  │  ├─ Turno.js
+  │  ├─ Usuario.js
+  │  └─ paciente.model.js
+  ├─ routes
+  │  ├─ auth.routes.js
+  │  ├─ index.js
+  │  ├─ medico.routes.js
+  │  ├─ pacientes.routes.js
+  │  ├─ turnos.routes.js
+  │  └─ usuario.routes.js
+  ├─ scrips
+  │  └─ seed.js
+  ├─ utils
+  │  └─ fileManager.js
+  └─ views
+    ├─ asignarTurno.pug
+    ├─ error.pug
+    ├─ index.pug
+    ├─ layout.pug
+    ├─ login.pug
+    └─ pacientes.pug
+
 ```
 
 ## Descripción del Sistema
