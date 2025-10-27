@@ -1,9 +1,39 @@
+/* ======== Theme variables ======== */
+:root {
+  --bg: #fafafa;
+  --text: #222222;
+  --primary: #007bff;
+  --primary-dark: #0056b3;
+  --muted: #555555;
+  --card-bg: #ffffff;
+  --border: #cccccc;
+  --nav-bg: #007bff;
+  --nav-text: #ffffff;
+  --danger: #dc3545;
+  --danger-dark: #b02a37;
+}
+
+/* Dark theme overrides (applied when body has class .dark-mode) */
+.dark-mode {
+  --bg: #121212;
+  --text: #e6eef8;
+  --primary: #3390ff;
+  --primary-dark: #1a6fb3;
+  --muted: #c0c6cc;
+  --card-bg: #1e1e1e;
+  --border: #2a2a2a;
+  --nav-bg: #3390ff;
+  --nav-text: #ffffff;
+  --danger: #ff6b6b;
+  --danger-dark: #c04444;
+}
+
 /* ======== Base ======== */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
-  background: #fafafa;
-  color: #222;
+  background: var(--bg);
+  color: var(--text);
 }
 
 h1, h2, h3 {
@@ -17,23 +47,23 @@ h1, h2, h3 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 15px 20px;
-  background: #007bff;
+  background: var(--nav-bg);
   border-radius: 10px;
-  color: #fff;
+  color: var(--nav-text);
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .nav-logo {
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
+  color: var(--nav-text);
   text-decoration: none;
 }
 
 .nav-link {
   font-size: 14px;
   font-weight: 600;
-  color: #fff;
+  color: var(--nav-text);
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 6px;
@@ -41,7 +71,7 @@ h1, h2, h3 {
 }
 
 .nav-link:hover {
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.12);
 }
 
 /* ===== Footer ===== */
@@ -49,7 +79,7 @@ h1, h2, h3 {
   text-align: center;
   padding: 20px;
   margin-top: 50px;
-  color: #555;
+  color: var(--muted);
   font-size: 14px;
 }
 
@@ -65,7 +95,7 @@ h1, h2, h3 {
 .btn, button {
   display: inline-block;
   padding: 10px 18px;
-  background-color: #007bff;
+  background-color: var(--primary);
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -77,7 +107,7 @@ h1, h2, h3 {
 }
 
 .btn:hover, button:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-dark);
 }
 
 .btn:disabled, button:disabled {
@@ -86,8 +116,8 @@ h1, h2, h3 {
   opacity: 0.6;
 }
 
-.btn-danger { background-color: #dc3545; }
-.btn-danger:hover { background-color: #b02a37; }
+.btn-danger { background-color: var(--danger); }
+.btn-danger:hover { background-color: var(--danger-dark); }
 
 .btn-secondary { background-color: #6c757d; }
 .btn-secondary:hover { background-color: #545b62; }
@@ -101,7 +131,7 @@ table {
 }
 
 th, td {
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   padding: 8px;
   text-align: left;
 }
@@ -123,24 +153,26 @@ label {
 
 input, select, textarea {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 14px;
+  background: var(--card-bg);
+  color: var(--text);
 }
 
 input:focus, select:focus, textarea:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--primary);
 }
 
 /* ======== Turnos ======== */
 .turno-box {
   max-width: 450px;
   margin: 20px auto;
-  background: #fff;
+  background: var(--card-bg);
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
 }
 
 .turno-form {
@@ -198,7 +230,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .modal-content {
-  background: #fff;
+  background: var(--card-bg);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -218,22 +250,22 @@ input:focus, select:focus, textarea:focus {
   max-width: 380px;
   margin: 100px auto;
   padding: 40px 30px;
-  background: #ffffff;
+  background: var(--card-bg);
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-container:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
 }
 
 .login-container h1 {
   text-align: center;
   margin-bottom: 30px;
   font-weight: 700;
-  color: #222;
+  color: var(--text);
 }
 
 .form-group {
@@ -245,20 +277,22 @@ input:focus, select:focus, textarea:focus {
 .form-group label {
   font-weight: 600;
   margin-bottom: 5px;
-  color: #555;
+  color: var(--muted);
 }
 
 .form-group input {
   padding: 12px 15px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 10px;
   font-size: 14px;
   transition: all 0.3s ease;
+  background: var(--card-bg);
+  color: var(--text);
 }
 
 .form-group input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0,123,255,0.2);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(51,144,255,0.12);
   outline: none;
 }
 
@@ -268,7 +302,7 @@ button.btn {
   border-radius: 10px;
   font-size: 16px;
   font-weight: 600;
-  background: linear-gradient(90deg, #0066ff, #007bff);
+  background: linear-gradient(90deg, var(--primary), var(--primary));
   border: none;
   color: white;
   cursor: pointer;
@@ -276,9 +310,9 @@ button.btn {
 }
 
 button.btn:hover {
-  background: linear-gradient(90deg, #0052cc, #0056b3);
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary-dark));
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
 }
 
 .alert {
@@ -303,7 +337,7 @@ button.btn:hover {
 .index-content h1 {
   font-size: 28px;
   margin-bottom: 40px;
-  color: #222;
+  color: var(--text);
   font-weight: 700;
 }
 
@@ -321,7 +355,7 @@ a.btn {
   font-weight: 600;
   text-decoration: none;
   color: #fff;
-  background: linear-gradient(90deg, #0066ff, #007bff);
+  background: linear-gradient(90deg, var(--primary), var(--primary));
   border-radius: 10px;
   transition: all 0.3s ease;
 }

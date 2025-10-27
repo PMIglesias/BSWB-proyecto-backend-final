@@ -12,6 +12,7 @@ html(lang="es")
     header
       nav.navbar
         a.nav-logo(href="/") Clínica coso
+        button#themeBtn.nav-link(type="button", title="Alternar tema") 🌙
         if usuario
           a.nav-link(href="/auth/logout") Cerrar sesión
 
@@ -22,3 +23,4 @@ html(lang="es")
     //- Footer minimalista
     footer.footer
       p &copy; #{new Date().getFullYear()} coso
+    script(src="/js/theme.js")
